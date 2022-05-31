@@ -1,0 +1,62 @@
+.container-pokemons {
+  width: 90%;
+  height: 2000px;
+  margin: auto;
+}
+
+.pagination {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  position: relative;
+}
+
+.pagination__item {
+  width: 20%;
+  height: 5%;
+  margin: 0 1%;
+}
+
+.pagination__cards {
+  width: 100%;
+  height: 95%;
+  position: absolute;
+  z-index: var(--container-cards-z-index);
+  inset: 0;
+
+  list-style: none;
+  
+  display: grid;
+  grid-template: repeat(auto-fill, 300px) / repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.pagination__cards[hidden] {
+  display: none;
+}
+
+.pagination__card {
+  width: 100%;
+  height: 100%;
+}
+
+.pagination__index {
+  width: 100%;
+  height: 100%;
+  border: none;
+
+  padding: 10px 0;
+  text-align: center;
+  background: turquoise;
+  border-radius: 10px;
+  display: block;
+}
+
+.pagination__index:hover {
+  cursor: pointer;
+}
+
