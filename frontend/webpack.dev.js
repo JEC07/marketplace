@@ -6,6 +6,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback: true
   }
 })

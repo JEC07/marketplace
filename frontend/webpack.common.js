@@ -8,7 +8,7 @@ module.exports = {
     index: './src/index.tsx'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
     clean: true
   },
@@ -41,10 +41,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: '[name].bundle.html'
+      filename: '[name].html'
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].bundle.css'
+      filename: '[name].css'
     })
   ],
   optimization: {
