@@ -1,0 +1,63 @@
+.nav {
+  width: 100%;
+  height: 100%;
+  
+  grid-area: nav;
+}
+
+.items {
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  list-style: none;
+  background: gray;
+}
+
+.items > li {
+  width: 10%;
+  height: 100%;
+  margin: 0 20px;
+  padding: 10px;
+
+  display: flex;
+  place-items: center center;
+  place-content: center center;
+  background: red;
+}
+
+
+.items__list {
+  width: 100%;
+  height: 20vh;
+  padding: 0 0 0 20px;
+  position: absolute;
+  z-index: var(--nav-z-index);
+  
+  display: none;
+  list-style: none;
+  background: blue;
+  inset: 20vh 0 0 0;
+  flex-wrap: wrap;
+  
+}
+
+
+.items li:hover .items__list {
+  display: flex;
+}
+
+.items__list > li {
+  width: 10%;
+  height: 25px;
+  margin: 10px 10px 0 0;
+  padding: 10px;
+  background: gray;
+  display: flex;
+  place-items: center center;
+  place-content: center center;
+}
+
+.items__list > li:hover {
+  cursor: pointer;
+}
