@@ -4,14 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { addOneProduct, selectProductById } from '../../redux/productsSlice'
 import { useCarousel } from '../../hooks/useCarousel'
 import { Pokemon } from '../../typescript/types'
-import { getPokemonsByAbility } from '../../services/pokemonApi'
 
 import addCart from '../../assets/add_to_cart.svg'
 import addedCart from '../../assets/added_to_cart.svg'
 import '../../styles/card.css'
+import { getAbilitySummary } from '../../services/pokemonApi'
 
 interface Props {
-  pokemon : Pokemon
+  pokemon: Pokemon
 }
 
 const Card: React.FC<Props> = ({ pokemon }: Props) => {
@@ -20,16 +20,16 @@ const Card: React.FC<Props> = ({ pokemon }: Props) => {
   const imgPokemon: string = pokemon.sprites.other.dream_world.front_default ?? pokemon.sprites.other['official-artwork'].front_default
   const {
     position,
-    increase,
-    decrease
+    getIncrease,
+    getDecrease
   } = useCarousel(3)
   const dispatch = useAppDispatch()
   const pokemonIsAdded = useAppSelector((state) => selectProductById(state, pokemon.id))
 
   const handleAbilityClick = async (ability: string, position: number) => {
-    const data = await getPokemonsByAbility(ability)
+    const data = await getAbilitySummary(ability)
 
-    for (const element of data.effect_entries) {
+    for (const element of data) {
       if (element.language.name === 'en') setAbilitySummary(element.effect)
     }
 
@@ -42,8 +42,8 @@ const Card: React.FC<Props> = ({ pokemon }: Props) => {
   }
 
   const handleBtnClick = (type: string) => {
-    if (type === 'prev') decrease()
-    if (type === 'next') increase()
+    if (type === 'prev') getDecrease()
+    if (type === 'next') getIncrease()
   }
 
   const handleImgShoppingCartClick = (pokemon: Pokemon) => {

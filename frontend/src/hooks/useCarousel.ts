@@ -3,7 +3,7 @@ import { useState } from 'react'
 export const useCarousel = (arrayLength: number) => {
   const [position, setPosition] = useState<number>(0)
 
-  const increase = () => {
+  const getIncrease = () => {
     let next = position + 1
 
     if (next === arrayLength) {
@@ -13,7 +13,7 @@ export const useCarousel = (arrayLength: number) => {
     setPosition(next)
   }
 
-  const decrease = () => {
+  const getDecrease = () => {
     let prev = position - 1
 
     if (prev === -1) {
@@ -25,7 +25,7 @@ export const useCarousel = (arrayLength: number) => {
 
   return {
     position,
-    increase,
-    decrease
+    getIncrease,
+    getDecrease
   }
 }
