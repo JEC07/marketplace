@@ -1,9 +1,11 @@
+export interface Search {
+  name: string
+  url: string
+}
+
 export interface Pokemon {
   abilities : [{
-    ability: {
-      name: string
-      url: string
-    }
+    ability: Search
   }]
   'base_experience': number
   id: number
@@ -20,16 +22,10 @@ export interface Pokemon {
   }
   stats: [{
     'base_stat': number
-    stat: {
-      name: string
-      url: string
-    }
+    stat: Search
   }]
   types: [{
-    type: {
-      name: string
-      url: string
-    }
+    type: Search
   }]
   weight: number
 }
@@ -37,10 +33,7 @@ export interface Pokemon {
 export interface Ability {
   'effect_entries': [{
     effect: string
-    language: {
-      name: string
-      url: string
-    }
+    language: Search
     short_effect: string
   }]
   name: string
