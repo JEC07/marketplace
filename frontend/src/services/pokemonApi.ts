@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { Ability, Search } from '../typescript/types'
 
 const API = 'https://pokeapi.co/api/v2/'
 
@@ -37,36 +38,53 @@ export const {
   useGetPokemonsAbilitiesQuery
 } = pokemonApi
 
-const getPokemonByName = async (name: string) => {
+const getPokemonByName = async (name: string): Promise<any> => {
   try {
     const res = await fetch(API + `pokemon/${name}`)
-    return await res.json()
+    const data = await res.json()
+    return data
   } catch {
-    return 'Not found'
+    return undefined
   }
 }
 
-const getPokemonsByType = async (type : string) => {
+interface PokemonSearch {
+  pokemon: Search
+}
+
+const getPokemonsByType = async (type : string): Promise<PokemonSearch[]> => {
   try {
     const res = await fetch(API + `type/${type}`)
     const data = await res.json()
     return data.pokemon
   } catch {
-    return 'Not found'
+    return []
   }
 }
 
-const getPokemonsByAbility = async (ability: string) => {
+const getPokemonsByAbility = async (ability: string): Promise<PokemonSearch[]> => {
   try {
     const res = await fetch(API + 'ability/' + ability)
-    return await res.json()
+    const data: Ability = await res.json()
+    return data.pokemon
   } catch {
-    return 'Not found'
+    return []
+  }
+}
+
+const getAbilitySummary = async (ability: string): Promise<any> => {
+  try {
+    const res = await fetch(API + 'ability/' + ability)
+    const data: Ability = await res.json()
+    return data.effect_entries
+  } catch {
+    return undefined
   }
 }
 
 export {
   getPokemonByName,
   getPokemonsByType,
-  getPokemonsByAbility
+  getPokemonsByAbility,
+  getAbilitySummary
 }
