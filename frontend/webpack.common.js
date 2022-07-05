@@ -30,7 +30,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(svg)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'assets/[hash][ext][query]'
@@ -52,9 +52,11 @@ module.exports = {
       new ImageMinimizerPlugin({
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
-          filename: 'optimized-[name][ext]',
           options: {
             plugins: [
+              ['gifsicle', { interlaced: true }],
+              ['jpegtran', { progressive: true }],
+              ['optipng', { optimizationLevel: 5 }],
               ['svgo', {
                 name: 'preset-default',
                 params: {
