@@ -10,6 +10,7 @@ import Header from '../components/header/Header'
 import DefaultPokemons from '../components/pokemons/DefaultPokemons'
 import PokemonsTypePage from '../pages/PokemonsTypePage'
 import PokemonsAbilityPage from '../pages/PokemonsAbiltyPage'
+import PokemonSearchPage from '../pages/PokemonSearchPage'
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Route index element={<DefaultPokemons />} />
             <Route path='type/:name' element={<PokemonsTypePage />} />
             <Route path='ability/:name' element={<PokemonsAbilityPage />} />
+            <Route path='search/:pokemonName' element={<PokemonSearchPage />} />
           </Route>
           <Route path='/login' element={<LoginPage />} />
           <Route path='*' element={<NotFoundPage />} />
